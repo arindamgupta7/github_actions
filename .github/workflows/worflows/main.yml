@@ -2,7 +2,7 @@ name: Daily Commit Workflow
 
 on:
   schedule:
-    - cron: "30 7 * * *"
+    - cron: "30 7 * * *"  #comment 2
   workflow_dispatch:
 
 jobs:
