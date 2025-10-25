@@ -1,10 +1,12 @@
-
 name: Daily Commit Workflow
 
 on:
   schedule:
-    - cron: "30 7 * * *"  #comment 2
+    - cron: "30 7 * * *" # runs daily at 07:30 UTC (~1:00 PM IST)
   workflow_dispatch:
+
+permissions:
+  contents: write  # give permission to push commits
 
 jobs:
   daily-commit:
@@ -14,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Add commit by 22ds2000067@ds.study.iitm.ac.in
         run: |
@@ -23,4 +25,4 @@ jobs:
           git config user.email "22ds2000067@ds.study.iitm.ac.in"
           git add last_run.txt
           git commit -m "Automated commit on $(date -u)" || echo "No changes to commit"
-          git push
+          git push origin HEAD:main
